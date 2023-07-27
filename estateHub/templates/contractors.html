@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-color: #7b9097;
+        }
+
+        h1 {
+            color: white;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        table {
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid;
+            padding: 8px;
+        }
+
+     
+    </style>
+</head>
+<body>
+    <h1>Contractors</h1>
+
+    <table>
+        <tr>
+            <th>Contractor ID</th>
+            <th>Contractor Name</th>
+            <th>Contractor Phone</th>
+            <th>Update</th>
+        </tr>
+        {% for contractor in contractors %}
+        <tr>
+            <td>{{ contractor.contractor_id }}</td>
+            <td>{{ contractor.contractor_name }}</td>
+            <td>{{ contractor.contractor_phone }}</td>
+            <td>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

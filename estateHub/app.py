@@ -61,8 +61,16 @@ class Contract(db.Model):
     contractor_id = db.Column(db.Integer, db.ForeignKey('contractor.contractor_id'))
     property_id = db.Column(db.Integer, db.ForeignKey('property.property_id'))
 
+# Contractors CRUD
+# @app.route('/contractors', methods=['GET', 'POST'])
+# def contractors_CRUD():
+   #  pass
 
 
+@app.route('/contractors', methods=['GET'])
+def contractors_page():
+    table_contractors = Contractor.query.all()
+    return render_template('contractors.html', contractors=table_contractors)
 
 with app.app_context():
     db.create_all()
