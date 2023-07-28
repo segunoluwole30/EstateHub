@@ -241,20 +241,8 @@ def contract_CRUD(action, contract_id=None):
 
 # End of CRUD for Contracts
 
-# Agent CRUD Routes
 
-
-@app.route('/agents', methods=['GET'])
-def agents():
-    all_agents = Agent.query.all()
-    return render_template('agents.html', agents=all_agents)
-
-
-@app.route('/')
-def index():
-    return render_template('startup.html')
-
-# Agent Routes for CRUD
+# Start of CRUD for Agents
 
 
 @app.route('/agents/<action>', methods=['GET', 'POST'])
