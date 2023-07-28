@@ -11,7 +11,7 @@ app = Flask(__name__)
 
 # Login page
 # Please change your port to 5432 wherever you find it. I am using port 5433.
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:csce310@localhost:5433/estatehub'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:group8@34.29.172.246/estatehub'
 db = SQLAlchemy(app)
 
 
@@ -274,7 +274,70 @@ def contract_CRUD(action, contract_id=None):
 
 # End of CRUD for Contracts
 
+# Start of CRUD for Sales
 
+@app.route('/sales/<action>', methods=['GET', 'POST'])
+@app.route('/sales/<action>/<int:sale_id>', methods=['GET', 'POST'])
+def sales_CRUD(action, sale_id=None):
+    if action=='create':
+
+        if request.method=='POST':
+            agent_id = request.form['agent_id']
+            property_id = request.form['property_id']
+            customer_id = request.form['customer_id']
+            sale_date = request.form['sale_date']
+            sale_amount = request.form['sale_amount']
+
+            new_sale = Sale(agent_id=agent_id, customer_id=customer_id, property_id=property_id, sale_date=sale_date, sale_amount=sale_amount)
+
+            db.session.add(new_sale)
+            db.session.commit()
+
+            return redirect('/sales')
+        
+        all_agents = Agent.query.all()
+        all_properties = Property.query.all()
+        all_customers = Customer.query.all()
+        return render_template('create_sale.html', agents=all_agents, properties=all_properties, customers=all_customers)
+
+    elif action=='update':
+        
+        sale = Sale.query.get_or_404(sale_id)
+
+        if request.method == 'POST':
+            agent_id = request.form['agent_id']
+            property_id = request.form['property_id']
+            customer_id = request.form['customer_id']
+            sale_date = request.form['sale_date']
+            sale_amount = request.form['sale_amount']
+
+            sale.agent_id = agent_id
+            sale.property_id = property_id
+            sale.customer_id = customer_id
+            sale.sale_date = sale_date
+            sale.sale_amount = sale_amount
+
+            db.session.commit()
+
+            return redirect('/sales')
+
+        all_agents = Agent.query.all()
+        all_properties = Property.query.all()
+        all_customers = Customer.query.all()
+        return render_template('update_sale.html', sale=sale, agents=all_agents, properties=all_properties, customers=all_customers)
+
+    elif action=='delete':
+        
+        sale = Sale.query.get_or_404(sale_id)
+
+        db.session.delete(sale)
+        db.session.commit()
+        return redirect('/sales')
+    
+    else:
+        return redirect('/sales')
+
+# End of CRUD for Sales
 
 
 
