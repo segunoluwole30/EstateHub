@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Customers</title>
+</head>
+<body>
+    <h1>List of Customers</h1>
+    <table>
+        <tr>
+            <th>Customer ID</th>
+            <th>Preferred Zip</th>
+            <th>Preferred Beds</th>
+            <th>Preferred Baths</th>
+            <th>Preferred Price</th>
+            <th>Actions</th>
+        </tr>
+        {% for customer in customers %}
+            <tr>
+                <td>{{ customer.customer_id }}</td>
+                <td>{{ customer.preferred_zip }}</td>
+                <td>{{ customer.preferred_beds }}</td>
+                <td>{{ customer.preferred_baths }}</td>
+                <td>{{ customer.preferred_price }}</td>
+                <td>
+                    <a href="/customers/update/{{ customer.customer_id }}">Update</a>
+                    <a href="/customers/delete/{{ customer.customer_id }}">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    <a href="/customers/create">Create New Customer</a>
+</body>
+</html>

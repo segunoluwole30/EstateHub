@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create New Contract</title>
+</head>
+<body>
+    <h1>Create New Contract</h1>
+    <form method="POST" action="/contracts/create">
+        <label for="contractor_id">Contractor:</label>
+        <select name="contractor_id" id="contractor_id">
+            {% for contractor in contractors %}
+                <option value="{{ contractor.contractor_id }}">{{ contractor.contractor_name }} ({{ contractor.contractor_id }})</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label for="property_id">Property ID:</label>
+        <select name="property_id" id="property_id">
+            {% for property in properties %}
+                <option value="{{ property.property_id }}">{{ property.property_id }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <input type="submit" value="Create">
+    </form>
+    <a href="/contracts">Back to Contracts</a>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Contract</title>
+</head>
+<body>
+    <h1>Update Contract</h1>
+    <form method="POST" action="/contracts/update/{{ contract.contract_id }}">
+        <label for="contractor_id">Contractor:</label>
+        <select name="contractor_id" id="contractor_id">
+            {% for contractor in contractors %}
+                <option value="{{ contractor.contractor_id }}" {% if contractor.contractor_id == contract.contractor_id %}selected{% endif %}>{{ contractor.contractor_name }} ({{ contractor.contractor_id }})</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label for="property_id">Property ID:</label>
+        <select name="property_id" id="property_id">
+            {% for property in properties %}
+                <option value="{{ property.property_id }}" {% if property.property_id == contract.property_id %}selected{% endif %}>{{ property.property_id }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <input type="submit" value="Update">
+    </form>
+    <a href="/contracts">Back to Contracts</a>
+</body>
+</html>

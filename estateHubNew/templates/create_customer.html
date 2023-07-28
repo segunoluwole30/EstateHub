@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Customer</title>
+</head>
+<body>
+    <h1>Create Customer</h1>
+    <form method="post" action="/customers/create">
+        <label for="preferred_zip">Preferred Zip:</label>
+        <input type="text" id="preferred_zip" name="preferred_zip" required>
+        <br>
+        <label for="preferred_beds">Preferred Beds:</label>
+        <input type="number" id="preferred_beds" name="preferred_beds" required>
+        <br>
+        <label for="preferred_baths">Preferred Baths:</label>
+        <input type="number" id="preferred_baths" name="preferred_baths" required>
+        <br>
+        <label for="preferred_price">Preferred Price:</label>
+        <input type="number" step="0.01" id="preferred_price" name="preferred_price" required>
+        <br>
+        <input type="submit" value="Create">
+    </form>
+    <a href="/customers">Back to Customers</a>
+</body>
+</html>

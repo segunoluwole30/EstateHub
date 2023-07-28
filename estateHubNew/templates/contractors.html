@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contractors</title>
+</head>
+<body>
+    <h1>Contractors</h1>
+    <table>
+        <tr>
+            <th>Contractor ID</th>
+            <th>Contractor Name</th>
+            <th>Contractor Phone</th>
+            <th>Actions</th>
+        </tr>
+        {% for contractor in contractors %}
+        <tr>
+            <td>{{ contractor.contractor_id }}</td>
+            <td>{{ contractor.contractor_name }}</td>
+            <td>{{ contractor.contractor_phone }}</td>
+            <td>
+                <a href="/contractors/update/{{ contractor.contractor_id }}">Edit</a> |
+                <form method="post" action="/contractors/delete/{{ contractor.contractor_id }}" style="display: inline-block;">
+                    <input type="submit" value="Delete">
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="/contractors/create">Create New Contractor</a>
+    <br>
+    <a href="/">Back to EstateHub Home</a>
+</body>
+</html>
+

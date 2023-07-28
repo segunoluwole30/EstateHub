@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Agents</title>
+</head>
+<body>
+    <h1>Agents</h1>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Action</th>
+        </tr>
+        {% for agent in agents %}
+        <tr>
+            <td>{{ agent.agent_id }}</td>
+            <td>{{ agent.agent_name }}</td>
+            <td>{{ agent.agent_phone }}</td>
+            <td>
+                <a href="/agents/update/{{ agent.agent_id }}">Edit</a>
+                <a href="/agents/delete/{{ agent.agent_id }}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="/agents/create">Create New Agent</a>
+</body>
+</html>

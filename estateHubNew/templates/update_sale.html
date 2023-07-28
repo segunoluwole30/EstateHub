@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Sale</title>
+</head>
+<body>
+    <h1>Update Sale</h1>
+    <form method="post" action="/sales/update/{{ sale.sale_id }}">
+        <label for="agent">Agent:</label>
+        <select id="agent" name="agent_id" required>
+            {% for agent in agents %}
+                <option value="{{ agent.agent_id }}" {% if sale.agent_id == agent.agent_id %}selected{% endif %}>{{ agent.agent_id }} - {{ agent.agent_name }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label for="customer">Customer:</label>
+        <select id="customer" name="customer_id" required>
+            {% for customer in customers %}
+                <option value="{{ customer.customer_id }}" {% if sale.customer_id == customer.customer_id %}selected{% endif %}>{{ customer.customer_id }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label for="property">Property:</label>
+        <select id="property" name="property_id" required>
+            {% for property in properties %}
+                <option value="{{ property.property_id }}" {% if sale.property_id == property.property_id %}selected{% endif %}>{{ property.property_id }} - {{ property.property_address }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label for="sale_date">Sale Date:</label>
+        <input type="date" id="sale_date" name="sale_date" value="{{ sale.sale_date }}" required>
+        <br>
+        <label for="sale_amount">Sale Amount:</label>
+        <input type="number" step="0.01" id="sale_amount" name="sale_amount" value="{{ sale.sale_amount }}" required>
+        <br>
+        <input type="submit" value="Update">
+    </form>
+    <a href="/sales">Back to Sales</a>
+</body>
+</html>
