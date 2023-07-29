@@ -140,7 +140,7 @@ def contracts():
 
 @app.route('/')
 def index():
-    return render_template('startup.html')
+    return render_template('login.html')
 
 # FIXED CRUD for AGENTS
 @app.route('/agents/<action>', methods=['GET', 'POST'])
