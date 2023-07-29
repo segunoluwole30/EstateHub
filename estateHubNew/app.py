@@ -6,7 +6,7 @@ from sqlalchemy import exc
 import psycopg2
 
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='staticFiles')
 
 
 # Login page
