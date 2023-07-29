@@ -1,16 +1,50 @@
 from multiprocessing import synchronize
 from flask import Flask, render_template, request, flash, redirect
+from flask import Flask, render_template, request, flash, redirect, session
+from flask_session import Session
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import select
 from sqlalchemy import exc
 import psycopg2
 
 
-app = Flask(__name__, static_folder='staticFiles')
 
+app = Flask(__name__, static_folder='staticFiles')
+# Login page
+app.config['SECRET_KEY'] = 'csce310'
+# Initialize the Flask session
+app.config['SESSION_TYPE'] = 'filesystem'
+Session(app)
 
 # Login page
-# Please change your port to 5432 wherever you find it. I am using port 5433.
+
+# Login route
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        #password fields
+        if username == 'Admin' and password == 'csce310':
+            session['logged_in'] = True
+            return redirect('/startup')
+        else:
+            flash('Invalid username or password. Please try again.', 'error')
+    
+    return render_template('login.html')
+
+# Startup page route
+@app.route('/startup')
+def startup():
+    # Check if the user is logged in before showing the startup page
+    if not session.get('logged_in'):
+        return redirect('/login')
+    else:
+        # If the user is logged in, render the startup page
+        return render_template('startup.html')
+
+
+
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:group8@34.29.172.246/estatehub'
 db = SQLAlchemy(app)
 

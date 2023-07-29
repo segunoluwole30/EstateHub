@@ -1,0 +1,31 @@
+name: estatehubapp3
+channels:
+  - defaults
+dependencies:
+  - bzip2
+  - ca-certificates
+  - certifi
+  - libffi
+  - openssl
+  - pip=21.2
+  - python=3.10
+  - setuptools
+  - sqlite
+  - tk
+  - tzdata
+  - wheel
+  - zlib
+  - pip:
+    - click
+    - colorama
+    - flask
+    - flask-sqlalchemy
+    - greenlet
+    - itsdangerous
+    - jinja2
+    - markupsafe
+    - psycopg2-binary
+    - sqlalchemy
+    - werkzeug
+    - Flask-Migrate
+    - Flask-Session
