@@ -19,7 +19,11 @@
         <input type="number" id="number_baths" name="number_baths" value="{{ property.number_baths }}" required>
         <br>
         <label for="agent_id">Agent ID:</label>
-        <input type="text" id="agent_id" name="agent_id" value="{{ property.agent_id }}" required>
+        <select id="agent_id" name="agent_id" required>
+            {% for agent in agents %}
+            <option value="{{ agent.agent_id }}">{{ agent.agent_id }} - {{ agent.agent_name }}</option>
+            {% endfor %}
+        </select>
         <br>
         <label for="listing_date">Listing Date:</label>
         <input type="date" id="listing_date" name="listing_date" value="{{ property.listing_date }}" required>

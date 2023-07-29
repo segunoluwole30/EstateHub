@@ -339,6 +339,77 @@ def sales_CRUD(action, sale_id=None):
 
 # End of CRUD for Sales
 
+# Start of CRUD for Properties
+
+@app.route('/properties/<action>', methods=['GET', 'POST'])
+@app.route('/properties/<action>/<int:property_id>', methods=['GET', 'POST'])
+def properties_CRUD(action, property_id=None):
+    if action=='create':
+
+        if request.method=='POST':
+            property_id = request.form['property_id']
+            property_address = request.form['property_address']
+            property_zip = request.form['property_zip']
+            number_beds = request.form['number_beds']
+            number_baths = request.form['number_baths']
+            agent_id = request.form['agent_id']
+            listing_date = request.form['listing_date']
+            price = request.form['price']
+
+
+            new_property = Property(property_id=poperty_id, property_address=property_address, property_zip=property_zip, number_beds=number_beds, number_baths=number_baths, agent_id=agent_id, listing_date=listing_date, price=price)
+
+            db.session.add(new_property)
+            db.session.commit()
+
+            return redirect('/properties')
+        
+        all_agents = Agent.query.all()
+        return render_template('create_property.html', agents=all_agents)
+
+    elif action=='update':
+        
+        property = Property.query.get_or_404(property_id)
+
+        if request.method == 'POST':
+            property_id = request.form['property_id']
+            property_address = request.form['property_address']
+            property_zip = request.form['property_zip']
+            number_beds = request.form['number_beds']
+            number_baths = request.form['number_baths']
+            agent_id = request.form['agent_id']
+            listing_date = request.form['listing_date']
+            price = request.form['price']
+
+            sale.property_id = property_id
+            sale.property_address = property_address
+            sale.property_zip = property_zip
+            sale.number_beds = number_beds
+            sale.number_baths = number_baths
+            sale.agent_id = agent_id
+            sale.listing_date = listing_date
+            sale.price = price
+
+            db.session.commit()
+
+            return redirect('/properties')
+
+        all_agents = Agent.query.all()
+        return render_template('update_property.html', property=property, agents=all_agents)
+
+    elif action=='delete':
+        
+        property = Property.query.get_or_404(property_id)
+
+        db.session.delete(property)
+        db.session.commit()
+        return redirect('/properties')
+    
+    else:
+        return redirect('/properties')
+
+# End of CRUD for Properties
+
 
 
 
