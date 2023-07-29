@@ -381,14 +381,14 @@ def properties_CRUD(action, property_id=None):
             listing_date = request.form['listing_date']
             price = request.form['price']
 
-            sale.property_id = property_id
-            sale.property_address = property_address
-            sale.property_zip = property_zip
-            sale.number_beds = number_beds
-            sale.number_baths = number_baths
-            sale.agent_id = agent_id
-            sale.listing_date = listing_date
-            sale.price = price
+            property.property_id = property_id
+            property.property_address = property_address
+            property.property_zip = property_zip
+            property.number_beds = number_beds
+            property.number_baths = number_baths
+            property.agent_id = agent_id
+            property.listing_date = listing_date
+            property.price = price
 
             db.session.commit()
 
