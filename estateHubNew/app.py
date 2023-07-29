@@ -408,7 +408,66 @@ def properties_CRUD(action, property_id=None):
 
 # End of CRUD for Properties
 
+# CRUD routes for Customer
+@app.route('/customers/<action>', methods=['GET', 'POST'])
+@app.route('/customers/<action>/<int:customer_id>', methods=['GET', 'POST'])
+def customer_CRUD(action, customer_id=None):
+    # CREATE method for CRUD - C
+    if action == 'create':
+        if request.method == 'POST':
+            preferred_zip = request.form['preferred_zip']
+            preferred_beds = request.form['preferred_beds']
+            preferred_baths = request.form['preferred_baths']
+            preferred_price = request.form['preferred_price']
+            new_customer = Customer(preferred_zip=preferred_zip, preferred_beds=preferred_beds, preferred_baths=preferred_baths, preferred_price=preferred_price)
 
+            #Adding Customer
+            db.session.add(new_customer)
+            db.session.commit()
+
+            # Return to Customer page
+            return redirect('/customers')
+        
+        return render_template('create_customer.html')
+    
+    # UPDATE
+    elif action == 'update':
+        # Get PK for updates
+        customer = Customer.query.get_or_404(customer_id)
+
+        if request.method == 'POST':
+            preferred_zip = request.form['preferred_zip']
+            preferred_beds = request.form['preferred_beds']
+            preferred_baths = request.form['preferred_baths']
+            preferred_price = request.form['preferred_price']
+            
+            #update to current values
+            customer.preferred_zip = preferred_zip
+            customer.preferred_beds = preferred_beds
+            customer.preferred_baths = preferred_baths
+            customer.preferred_price = preferred_price
+            db.session.commit()
+
+            return redirect('/customers')
+        
+        # Render customer update form
+        return render_template('update_customer.html', customer=customer)
+    
+    # DELETE
+    elif action == 'delete':
+        # Get PK
+        customer = Customer.query.get_or_404(customer_id)
+
+        # Delete customer found from PK
+        db.session.delete(customer)
+        db.session.commit()
+        return redirect('/customers')
+    
+    else:
+        return redirect('/customers')
+    
+# End of CRUD for Customers
+            
 
 
 
