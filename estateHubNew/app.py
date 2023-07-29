@@ -35,7 +35,7 @@ class Property(db.Model):
     listing_date = db.Column(db.Date)
     price = db.Column(db.Numeric(10, 2))
     # Add the relationship to Agent
-    agent = db.relationship('Agent', backref='properties', lazy=True)
+    agent = db.relationship('Agent', backref='property', lazy=True)
     contracts = db.relationship('Contract', backref='property', lazy=True)
     sales = db.relationship('Sale', backref='property', lazy=True)
 
@@ -347,7 +347,6 @@ def properties_CRUD(action, property_id=None):
     if action=='create':
 
         if request.method=='POST':
-            property_id = request.form['property_id']
             property_address = request.form['property_address']
             property_zip = request.form['property_zip']
             number_beds = request.form['number_beds']
@@ -355,9 +354,11 @@ def properties_CRUD(action, property_id=None):
             agent_id = request.form['agent_id']
             listing_date = request.form['listing_date']
             price = request.form['price']
-
+            print('reached')
 
             new_property = Property(property_id=property_id, property_address=property_address, property_zip=property_zip, number_beds=number_beds, number_baths=number_baths, agent_id=agent_id, listing_date=listing_date, price=price)
+
+            print(new_property)
 
             db.session.add(new_property)
             db.session.commit()
@@ -372,7 +373,6 @@ def properties_CRUD(action, property_id=None):
         property = Property.query.get_or_404(property_id)
 
         if request.method == 'POST':
-            property_id = request.form['property_id']
             property_address = request.form['property_address']
             property_zip = request.form['property_zip']
             number_beds = request.form['number_beds']
