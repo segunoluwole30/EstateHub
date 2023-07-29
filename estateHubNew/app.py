@@ -347,7 +347,6 @@ def properties_CRUD(action, property_id=None):
     if action=='create':
 
         if request.method=='POST':
-            property_id = request.form['property_id']
             property_address = request.form['property_address']
             property_zip = request.form['property_zip']
             number_beds = request.form['number_beds']
@@ -372,7 +371,6 @@ def properties_CRUD(action, property_id=None):
         property = Property.query.get_or_404(property_id)
 
         if request.method == 'POST':
-            property_id = request.form['property_id']
             property_address = request.form['property_address']
             property_zip = request.form['property_zip']
             number_beds = request.form['number_beds']
