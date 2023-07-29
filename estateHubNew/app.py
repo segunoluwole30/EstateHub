@@ -357,7 +357,7 @@ def properties_CRUD(action, property_id=None):
             price = request.form['price']
 
 
-            new_property = Property(property_id=poperty_id, property_address=property_address, property_zip=property_zip, number_beds=number_beds, number_baths=number_baths, agent_id=agent_id, listing_date=listing_date, price=price)
+            new_property = Property(property_id=property_id, property_address=property_address, property_zip=property_zip, number_beds=number_beds, number_baths=number_baths, agent_id=agent_id, listing_date=listing_date, price=price)
 
             db.session.add(new_property)
             db.session.commit()
