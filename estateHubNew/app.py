@@ -34,10 +34,7 @@ def login():
     return render_template('login.html')
 
 
-@app.before_request
-def require_login():
-    if not session.get('logged_in'):
-        return redirect('/login')
+
     
 
 # Startup page route
