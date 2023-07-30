@@ -2,10 +2,11 @@
 <html>
 <head>
     <title>Update Contract</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='startup.css') }}">
 </head>
 <body>
     <h1>Update Contract</h1>
-    <form method="POST" action="/contracts/update/{{ contract.contract_id }}">
+    <form class="crud" method="POST" action="/contracts/update/{{ contract.contract_id }}">
         <label for="contractor_id">Contractor:</label>
         <select name="contractor_id" id="contractor_id">
             {% for contractor in contractors %}

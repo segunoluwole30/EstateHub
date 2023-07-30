@@ -2,8 +2,103 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: #89CFF0;
+    text-align: center;
 }
 
 #welcome {
-    color: blue;
+    color: black;
+}
+
+
+
+.card {
+box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+transition: 0.3s;
+}
+
+.card:hover {
+box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.container {
+padding: 2px 16px;
+}
+button, input{
+    border-radius: 7px;
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
+    border: 1px solid grey
+}
+
+.card button{
+    background-color:#fff;
+    border: 0;
+}
+
+img{
+    max-width: 300px;
+}
+
+#navigations{
+    width: 90%;
+    padding: 2em 5%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    row-gap: 20px;
+}
+
+table{
+    width: 90%; 
+    border-collapse: collapse;
+    margin-bottom: 2em;
+    /* min-width: 400px; */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+th{
+    background-color: #6495ED;
+    color: #ffffff;
+    text-align: left;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: center;
+}
+
+tbody tr{
+    border-bottom: 1px solid #dddddd;
+}
+tbody tr:nth-of-type(even) {
+    background-color: #eaeaea;
+}
+tbody tr:nth-of-type(odd) {
+    background-color: #fff;
+}
+tbody tr:last-of-type {
+    border-bottom: 2px solid #6495ED;
+}
+tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+
+
+.crud{
+    display: flex;
+    flex-direction: column;
+    padding: 1em 18%;
+    margin-bottom: 1em;
+}
+
+label{
+    margin-bottom: 0.5em;
+}
+
+input[type=text]{
+    padding: 0.3em 0.6em;
+    border-radius: 5px;
+    border: 1px solid grey
 }

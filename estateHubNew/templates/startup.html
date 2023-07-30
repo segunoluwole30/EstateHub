@@ -2,29 +2,28 @@
 <html>
 <head>
     <title>EstateHub Startup</title>
-    <link rel="stylesheet" href="/staticFiles/startup.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='startup.css') }}">
 </head>
 <body>
-    <h1 id="welcome">Welcome to EstateHub, Agent!</h1>
+    <h1 id="welcome">EstateHub</h1>
     <div id="navigations">
-        <h3>Choose what to view: </h3>
-        <form method="get" action="/contractors">
-            <button type="submit">Contractors</button>
+        <form class="card" method="get" action="/contractors">
+            <button type="submit"> <img src="/staticFiles/contractors.png"><p>Contractors</p></button>
         </form>
-        <form method="get" action="/agents">
-            <button type="submit">Agents</button>
+        <form class="card" method="get" action="/agents">
+            <button type="submit"> <img src="/staticFiles/Agents.png"><p>Agents</p></button>
         </form>
-        <form method="get" action="/properties">
-            <button type="submit">Properties</button>
+        <form class="card" method="get" action="/properties">
+            <button type="submit"> <img src="/staticFiles/properties.png"><p>Properties</p></button>
         </form>
-        <form method="get" action="/customers">
-            <button type="submit">Customers</button>
+        <form class="card" method="get" action="/customers">
+            <button type="submit"> <img src="/staticFiles/Customers.png"><p>Customers</p></button>
         </form>
-        <form method="get" action="/sales">
-            <button type="submit">Sales</button>
+        <form class="card" method="get" action="/sales">
+            <button type="submit"> <img src="/staticFiles/sales.png"><p>Sales</p></button>
         </form>
-        <form method="get" action="/contracts">
-            <button type="submit">Contracts</button>
+        <form class="card" method="get" action="/contracts">
+            <button type="submit"> <img src="/staticFiles/Contracts.png"><p>Contracts</p></button>
         </form>
     </div>
 </body>

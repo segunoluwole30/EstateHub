@@ -2,10 +2,11 @@
 <html>
 <head>
     <title>Update Customer</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='startup.css') }}">
 </head>
 <body>
     <h1>Update Customer</h1>
-    <form method="post" action="/customers/update/{{ customer.customer_id }}">
+    <form class="crud" method="post" action="/customers/update/{{ customer.customer_id }}">
         <label for="preferred_zip">Preferred Zip:</label>
         <input type="text" id="preferred_zip" name="preferred_zip" value="{{ customer.preferred_zip }}" required>
         <br>

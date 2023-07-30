@@ -2,10 +2,11 @@
 <html>
 <head>
     <title>Update Contractor</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='startup.css') }}">
 </head>
 <body>
     <h1>Update Contractor</h1>
-    <form method="post" action="/contractors/update/{{ contractor.contractor_id }}">
+    <form class='crud' method="post" action="/contractors/update/{{ contractor.contractor_id }}">
         <label for="contractor_name">Contractor Name:</label>
         <input type="text" id="contractor_name" name="contractor_name" value="{{ contractor.contractor_name }}" required>
         <br>

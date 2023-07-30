@@ -2,10 +2,11 @@
 <html>
 <head>
     <title>Update Property</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='startup.css') }}">
 </head>
 <body>
     <h1>Update Property</h1>
-    <form method="post" action="/properties/update/{{ property.property_id }}">
+    <form class="crud" method="post" action="/properties/update/{{ property.property_id }}">
         <label for="property_address">Property Address:</label>
         <input type="text" id="property_address" name="property_address" value="{{ property.property_address }}" required>
         <br>

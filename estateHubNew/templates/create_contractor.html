@@ -2,10 +2,11 @@
 <html>
 <head>
     <title>Create Contractor</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='startup.css') }}">
 </head>
 <body>
     <h1>Create Contractor</h1>
-    <form method="post" action="/contractors/create">
+    <form class="crud" method="post" action="/contractors/create">
         <label for="contractor_name">Contractor Name:</label>
         <input type="text" id="contractor_name" name="contractor_name" required>
         <br>

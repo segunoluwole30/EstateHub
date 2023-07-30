@@ -2,10 +2,11 @@
 <html>
 <head>
     <title>Create New Contract</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='startup.css') }}">
 </head>
 <body>
     <h1>Create New Contract</h1>
-    <form method="POST" action="/contracts/create">
+    <form class="crud" method="POST" action="/contracts/create">
         <label for="contractor_id">Contractor:</label>
         <select name="contractor_id" id="contractor_id">
             {% for contractor in contractors %}

@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Contractors</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='startup.css') }}">
 </head>
 <body>
     <h1>Contractors</h1>
@@ -18,7 +19,7 @@
             <td>{{ contractor.contractor_name }}</td>
             <td>{{ contractor.contractor_phone }}</td>
             <td>
-                <a href="/contractors/update/{{ contractor.contractor_id }}">Edit</a> |
+                <a href="/contractors/update/{{ contractor.contractor_id }}"><button>Edit</button></a>
                 <form method="post" action="/contractors/delete/{{ contractor.contractor_id }}" style="display: inline-block;">
                     <input type="submit" value="Delete">
                 </form>
@@ -26,9 +27,9 @@
         </tr>
         {% endfor %}
     </table>
-    <a href="/contractors/create">Create New Contractor</a>
+    <a href="/contractors/create"><button>Create New Contractor</button></a>
     <br>
-    <a href="/startup">Back to EstateHub Home</a>
+    <a href="/startup"><button>Back to EstateHub Home</button></a>
 </body>
 </html>
 

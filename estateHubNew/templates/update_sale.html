@@ -2,10 +2,11 @@
 <html>
 <head>
     <title>Update Sale</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='startup.css') }}">
 </head>
 <body>
     <h1>Update Sale</h1>
-    <form method="post" action="/sales/update/{{ sale.sale_id }}">
+    <form class="crud" method="post" action="/sales/update/{{ sale.sale_id }}">
         <label for="agent">Agent:</label>
         <select id="agent" name="agent_id" required>
             {% for agent in agents %}
