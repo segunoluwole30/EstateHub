@@ -29,9 +29,16 @@ def login():
             session['logged_in'] = True
             return redirect('/startup')
         else:
-            flash('Invalid username or password. Please try again.', 'error')
+            flash('Invalid Login Credentials! Ask Admin, All Agents can access using this login!', 'error')
     
     return render_template('login.html')
+
+
+@app.before_request
+def require_login():
+    if not session.get('logged_in'):
+        return redirect('/login')
+    
 
 # Startup page route
 @app.route('/startup')
