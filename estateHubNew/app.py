@@ -81,11 +81,13 @@ class Property(db.Model):
 # preferred_beds, preferred_baths, preferred_price)
 class Customer(db.Model):
     customer_id = db.Column(db.Integer, primary_key=True)
+    customer_name = db.Column(db.String(100))  #New addition, added for viewing purposes
     preferred_zip = db.Column(db.String(10))
     preferred_beds = db.Column(db.Integer)
     preferred_baths = db.Column(db.Integer)
     preferred_price = db.Column(db.Numeric(10, 2))
     sales = db.relationship('Sale', backref='customer', lazy=True)
+
 
 # Contractor- Contractor(contractor_id, contractor_name, contractor_phone)
 class Contractor(db.Model):
@@ -453,33 +455,36 @@ def customer_CRUD(action, customer_id=None):
     # CREATE method for CRUD - C
     if action == 'create':
         if request.method == 'POST':
+            customer_name = request.form['customer_name']
             preferred_zip = request.form['preferred_zip']
             preferred_beds = request.form['preferred_beds']
             preferred_baths = request.form['preferred_baths']
             preferred_price = request.form['preferred_price']
-            new_customer = Customer(preferred_zip=preferred_zip, preferred_beds=preferred_beds, preferred_baths=preferred_baths, preferred_price=preferred_price)
+            new_customer = Customer(customer_name=customer_name, preferred_zip=preferred_zip, preferred_beds=preferred_beds, preferred_baths=preferred_baths, preferred_price=preferred_price)
 
-            #Adding Customer
+            # Adding Customer
             db.session.add(new_customer)
             db.session.commit()
 
             # Return to Customer page
             return redirect('/customers')
-        
+
         return render_template('create_customer.html')
-    
+
     # UPDATE
     elif action == 'update':
         # Get PK for updates
         customer = Customer.query.get_or_404(customer_id)
 
         if request.method == 'POST':
+            customer_name = request.form['customer_name']
             preferred_zip = request.form['preferred_zip']
             preferred_beds = request.form['preferred_beds']
             preferred_baths = request.form['preferred_baths']
             preferred_price = request.form['preferred_price']
-            
-            #update to current values
+
+            # Update to current values
+            customer.customer_name = customer_name
             customer.preferred_zip = preferred_zip
             customer.preferred_beds = preferred_beds
             customer.preferred_baths = preferred_baths
@@ -487,10 +492,10 @@ def customer_CRUD(action, customer_id=None):
             db.session.commit()
 
             return redirect('/customers')
-        
+
         # Render customer update form
         return render_template('update_customer.html', customer=customer)
-    
+
     # DELETE
     elif action == 'delete':
         # Get PK
@@ -500,10 +505,10 @@ def customer_CRUD(action, customer_id=None):
         db.session.delete(customer)
         db.session.commit()
         return redirect('/customers')
-    
+
     else:
         return redirect('/customers')
-    
+
 # End of CRUD for Customers
             
 

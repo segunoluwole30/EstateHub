@@ -7,6 +7,9 @@
 <body>
     <h1>Update Customer</h1>
     <form class="crud" method="post" action="/customers/update/{{ customer.customer_id }}">
+        <label for="customer_name">Customer Name:</label>
+        <input type="text" id="customer_name" name="customer_name" value="{{ customer.customer_name }}" required>
+        <br>
         <label for="preferred_zip">Preferred Zip:</label>
         <input type="text" id="preferred_zip" name="preferred_zip" value="{{ customer.preferred_zip }}" required>
         <br>
@@ -21,7 +24,7 @@
         <br>
         <input type="submit" value="Update">
     </form>
-    <a href="/customers">Cancel, Return Back</a>
+    <a href="/customers">Cancel, Return Back to Customers</a>
 </body>
 </html>
 

@@ -7,6 +7,9 @@
 <body>
     <h1>Create Customer</h1>
     <form class="crud" method="post" action="/customers/create">
+        <label for="customer_name">Customer Name:</label>
+        <input type="text" id="customer_name" name="customer_name" required>
+        <br>
         <label for="preferred_zip">Preferred Zip:</label>
         <input type="text" id="preferred_zip" name="preferred_zip" required>
         <br>
@@ -21,6 +24,6 @@
         <br>
         <input type="submit" value="Create">
     </form>
-    <a href="/customers">Back to Customers</a>
+    <a href="/customers">Cancel, Return Back to Customers</a>
 </body>
 </html>
