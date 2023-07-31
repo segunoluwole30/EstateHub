@@ -2,7 +2,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #89CFF0;
+    background-color: #8dc4dd;
     text-align: center;
 }
 
@@ -13,22 +13,22 @@ body {
 
 
 .card {
-box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+box-shadow: 0 4px 8px 0 rgba(207, 196, 196, 0.2);
 transition: 0.3s;
 }
 
 .card:hover {
-box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+box-shadow: 0 20px 40px 0 rgba(141, 125, 168, 0.658);
 }
 
 .container {
 padding: 2px 16px;
 }
 button, input{
-    border-radius: 7px;
+    border-radius: 10px;
     padding-top: 0.3em;
     padding-bottom: 0.3em;
-    border: 1px solid grey
+    border: 1px solid rgb(115, 131, 184)
 }
 
 .card button{
@@ -100,5 +100,5 @@ label{
 input[type=text]{
     padding: 0.3em 0.6em;
     border-radius: 5px;
-    border: 1px solid grey
+    border: 1px solid rgb(198, 182, 182)
 }

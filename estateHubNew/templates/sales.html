@@ -9,9 +9,9 @@
     <table>
         <tr>
             <th>Sale ID</th>
-            <th>Agent</th>
-            <th>Customer ID</th>
-            <th>Property ID</th>
+            <th>Agent Name (Agent ID)</th>
+            <th>Customer Name (Customer ID)</th>
+            <th>Property (Property ID)</th>
             <th>Sale Date</th>
             <th>Sale Amount</th>
             <th>Actions</th>
@@ -20,8 +20,8 @@
             <tr>
                 <td>{{ sale.sale_id }}</td>
                 <td>{{ sale.agent.agent_name }} ({{ sale.agent.agent_id }})</td>
-                <td>{{ sale.customer_id }}</td>
-                <td>{{ sale.property_id }}</td>
+                <td>{{ sale.customer.customer_name }} ({{ sale.customer.customer_id }})</td>
+                <td>{{ sale.property.property_address }} {{ sale.property.property_zip }} ({{ sale.property.property_id }})</td>
                 <td>{{ sale.sale_date }}</td>
                 <td>{{ sale.sale_amount }}</td>
                 <td>
@@ -31,7 +31,7 @@
             </tr>
         {% endfor %}
     </table>
-    <a href="/sales/create">Create New Sale</a><br>
-    <a href="/startup">Back to EstateHub Home</a>
+    <a href="/sales/create"><button>Create New Sale</button></a><br>
+    <a href="/startup"><button>Back to EstateHub Home</button></a>
 </body>
 </html>
