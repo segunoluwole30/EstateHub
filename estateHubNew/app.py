@@ -434,7 +434,24 @@ def properties_CRUD(action, property_id=None):
 
         all_agents = Agent.query.all()
         return render_template('update_property.html', property=property, agents=all_agents)
+    
+    elif action=='filter':
+        filtered_properties = Property.query
 
+        zip = request.form['zip_code']
+        if zip:
+            filtered_properties = filtered_properties.filter_by(property_zip = zip)
+            print('zip given')
+        num_baths = request.form['num_baths']
+        if num_baths:
+            filtered_properties = filtered_properties.filter_by(number_baths = num_baths)
+            print('baths given')
+        num_beds = request.form['num_beds']
+        if num_beds:
+            filtered_properties = filtered_properties.filter_by(number_beds = num_beds)
+            print('beds given')
+
+        return render_template('properties.html', properties=filtered_properties.all())
     elif action=='delete':
         
         property = Property.query.get_or_404(property_id)

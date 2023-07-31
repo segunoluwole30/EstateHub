@@ -12,6 +12,8 @@
             <th>Property Address</th>
             <th>Property ZIP</th>
             <th>Agent Name</th>
+            <th># Beds</th>
+            <th># Baths</th>
             <th>Listing Date</th>
             <th>Price</th>
             <th>Actions</th>
@@ -22,6 +24,8 @@
                 <td>{{ property.property_address }}</td>
                 <td>{{ property.property_zip }}</td>
                 <td>{{ property.agent.agent_name }}</td>
+                <td>{{ property.number_beds }}</td>
+                <td>{{ property.number_baths }}</td>
                 <td>{{ property.listing_date }}</td>
                 <td>{{ property.price }}</td>
                 <td>
@@ -31,6 +35,20 @@
             </tr>
         {% endfor %}
     </table>
+    <div id = 'filter'>
+        <form class="crud" method="POST" action="/properties/filter" style="display: flex; flex-direction: row;">
+            <label for="zip_code">Zip Code:</label>
+            <input type="text" name="zip_code">
+            <br>
+            <label for="num_baths"># Baths:</label>
+            <input type="number" name="num_baths">
+            <br>
+            <label for="num_beds"># Beds:</label>
+            <input type="number" name="num_beds">
+            <br>
+            <input type="submit" value="Filter">
+        </form>
+    </div>
     <a href="/properties/create">Create New Property</a><br>
     <a href="/startup">Back to EstateHub Home</a>
 </body>
