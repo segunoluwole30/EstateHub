@@ -254,7 +254,6 @@ def contractor_CRUD(action, contractor_id=None):
 
 # End of CRUD for Contractors
 
-#Start of CRUD for Contracts
 @app.route('/contracts/<action>', methods=['GET', 'POST'])
 @app.route('/contracts/<action>/<int:contract_id>', methods=['GET', 'POST'])
 def contract_CRUD(action, contract_id=None):
@@ -274,9 +273,11 @@ def contract_CRUD(action, contract_id=None):
 
             return redirect('/contracts')
 
-        # Fetch all contractors and properties for the dropdown lists
+        # Property filter on contracts
+        sold_property_ids = [contract.property_id for contract in Contract.query.all()]
+        all_properties = Property.query.filter(~Property.property_id.in_(sold_property_ids)).all()
+
         all_contractors = Contractor.query.all()
-        all_properties = Property.query.all()
         return render_template('create_contract.html', contractors=all_contractors, properties=all_properties)
 
     # CRUD - U, Update 
@@ -294,9 +295,11 @@ def contract_CRUD(action, contract_id=None):
 
             return redirect('/contracts')
 
-        # Fetch all contractors and properties for the dropdown lists
+        # Property Filter on contracts
+        sold_property_ids = [contract.property_id for contract in Contract.query.all()]
+        all_properties = Property.query.filter(~Property.property_id.in_(sold_property_ids)).all()
+
         all_contractors = Contractor.query.all()
-        all_properties = Property.query.all()
         return render_template('update_contract.html', contract=contract, contractors=all_contractors, properties=all_properties)
 
     # CRUD - D, Delete
@@ -313,6 +316,7 @@ def contract_CRUD(action, contract_id=None):
         return redirect('/contracts')
 
 # End of CRUD for Contracts
+
 
 # Start of CRUD for Sales
 
@@ -362,8 +366,9 @@ def sales_CRUD(action, sale_id=None):
 
             return redirect('/sales')
 
-        # Property Filteration
+        
         all_agents = Agent.query.all()
+        # Property Filteration
         sold_property_ids = [sale.property_id for sale in Sale.query.all()]
         all_properties = Property.query.filter(~Property.property_id.in_(sold_property_ids)).all()
 

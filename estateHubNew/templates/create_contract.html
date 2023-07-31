@@ -10,7 +10,7 @@
         <label for="contractor_id">Contractor:</label>
         <select name="contractor_id" id="contractor_id">
             {% for contractor in contractors %}
-                <option value="{{ contractor.contractor_id }}">{{ contractor.contractor_name }} ({{ contractor.contractor_id }})</option>
+                <option value="{{ contractor.contractor_id }}">{{ contractor.contractor_id }} - {{ contractor.contractor_name }}</option>
             {% endfor %}
         </select>
         <br>
