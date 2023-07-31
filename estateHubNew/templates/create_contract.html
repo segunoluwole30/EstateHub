@@ -17,7 +17,7 @@
         <label for="property_id">Property ID:</label>
         <select name="property_id" id="property_id">
             {% for property in properties %}
-                <option value="{{ property.property_id }}">{{ property.property_id }}</option>
+            <option value="{{ property.property_id }}">{{ property.property_id }} - {{ property.property_address }}{{ property.property_zip }}</option>
             {% endfor %}
         </select>
         <br>

@@ -320,7 +320,6 @@ def contract_CRUD(action, contract_id=None):
 @app.route('/sales/<action>/<int:sale_id>', methods=['GET', 'POST'])
 def sales_CRUD(action, sale_id=None):
     if action=='create':
-
         if request.method=='POST':
             agent_id = request.form['agent_id']
             property_id = request.form['property_id']
@@ -336,12 +335,14 @@ def sales_CRUD(action, sale_id=None):
             return redirect('/sales')
         
         all_agents = Agent.query.all()
-        all_properties = Property.query.all()
+        # Property Filteration! For sales, no duplicate properties. 
+        sold_property_ids = [sale.property_id for sale in Sale.query.all()]
+        all_properties = Property.query.filter(~Property.property_id.in_(sold_property_ids)).all()
+
         all_customers = Customer.query.all()
         return render_template('create_sale.html', agents=all_agents, properties=all_properties, customers=all_customers)
 
     elif action=='update':
-        
         sale = Sale.query.get_or_404(sale_id)
 
         if request.method == 'POST':
@@ -361,13 +362,15 @@ def sales_CRUD(action, sale_id=None):
 
             return redirect('/sales')
 
+        # Property Filteration
         all_agents = Agent.query.all()
-        all_properties = Property.query.all()
+        sold_property_ids = [sale.property_id for sale in Sale.query.all()]
+        all_properties = Property.query.filter(~Property.property_id.in_(sold_property_ids)).all()
+
         all_customers = Customer.query.all()
         return render_template('update_sale.html', sale=sale, agents=all_agents, properties=all_properties, customers=all_customers)
 
     elif action=='delete':
-        
         sale = Sale.query.get_or_404(sale_id)
 
         db.session.delete(sale)
@@ -377,7 +380,7 @@ def sales_CRUD(action, sale_id=None):
     else:
         return redirect('/sales')
 
-# End of CRUD for Sales
+# End CRUD for Sales
 
 # Start of CRUD for Properties
 
