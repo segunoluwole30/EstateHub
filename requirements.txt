@@ -1,14 +1,3 @@
-bzip2
-ca-certificates
-certifi
-libffi
-openssl
-setuptools
-sqlite
-tk
-tzdata
-wheel
-zlib
 click
 colorama
 flask
