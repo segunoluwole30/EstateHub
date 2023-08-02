@@ -58,9 +58,37 @@ This should allow you to have access to the shared database.
 ## Alternative Connection Method Local Database (Optional) ##
 Alternatively, if you want to use your own database and tables... you can change the contents of the app.py file for the connection.
 
-Currently the line is 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:group8@34.29.172.246/estatehub'
+Currently the line in our app.py file is:
+`postgresql://postgres:group8@34.29.172.246/estatehub`
 
-You can set this line to your own database and tables using. 
-postgresql://<user>:<password>@<hostname>/<databasename>
+You can set this line to your own database and tables in the app.py file.
+The configuration string follows the following pattern:
+
+ `postgresql://<user>:<password>@<hostname>/<databasename>`
+
+For example:
+
+`postgresql://postgres:csce310@localhost:5432/estatehub`
+
+Make sure you already created the database schema and tables beforehand. 
+For this example this is the commands :
+
+```
+CREATE DATABASE estatehub WITH OWNER = postgres ENCODING = 'UTF8' CONNECTION LIMIT = -1;
+CREATE SCHEMA estatehub AUTHORIZATION postgres;
+```
+
+Our project should automatically create the tables upon running. However, these steps are not neccessary in this section in order to run our database since we have it hosted on Google Cloud already configured. This is only if you want to create a local database and tables. 
+
+
+## Execute Application ##
+
+To run our web application write flask run into the Anaconda prompt after you have already set up the environment and have activated the app. 
+
+```
+flask run
+```
+ It should automatically show up here [http://localhost:5000](http://localhost:5000).
+
+## Cloud Hosting ##
 
