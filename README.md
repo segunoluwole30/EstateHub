@@ -90,5 +90,37 @@ flask run
 ```
  It should automatically show up here [http://localhost:5000](http://localhost:5000).
 
-## Cloud Hosting ##
+An alternative way to execute the application is by going directly to this site which is discussed further below:
+[https://estatehub-group8.onrender.com/](https://estatehub-group8.onrender.com/)
+
+## Cloud Hosting Deployment## 
+[Render](https://render.com/) is the cloud service used to build a web service for this application. 
+
+The requirements.txt file has everything that is required for the build and run of our application. From a user's perspective all that has to be done is click this link below. 
+
+[https://estatehub-group8.onrender.com/](https://estatehub-group8.onrender.com/)
+
+## Additional Information for Deployment and Creation of Render Deployment ##
+
+This is not necessary to do again, but it is a brief overview of how the project was deployed. 
+
+Gunicorn serves as the interface between external web traffic and the Python Flask application or any other WSGI-compliant application running on the Render platform.
+
+Every time a commit is made to GitHub the application automatically deploys.
+
+To recreate this deployment and setup after making an account and selecting the New+ button select the Web Service option: 
+
+The repository URL and Branch must be entered. 
+The build command would be :
+```
+pip install -r requirements.txt
+```
+The run command would be : 
+```
+gunicorn estateHubNew.app:app
+```
+
+Auto Deploy is default. Every commit to triggers a deployment.
+
+
 
