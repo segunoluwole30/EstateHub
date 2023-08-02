@@ -93,7 +93,7 @@ flask run
 An alternative way to execute the application is by going directly to this site which is discussed further below:
 [https://estatehub-group8.onrender.com/](https://estatehub-group8.onrender.com/)
 
-## Cloud Hosting Deployment## 
+## Cloud Hosting Deployment ## 
 [Render](https://render.com/) is the cloud service used to build a web service for this application. 
 
 The requirements.txt file has everything that is required for the build and run of our application. From a user's perspective all that has to be done is click this link below. 
