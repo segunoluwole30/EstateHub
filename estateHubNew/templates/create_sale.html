@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Create Sale</title>
+    <title>Create Sale - Properties can ONLY be sold by the Agent Assigned. </title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='startup.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <h1>Create Sale</h1>
-    <form class="crud" method="post" action="/sales/create">
+    <form class="crud" method="post" action="/sales/create" id="sale-form">
         <label for="agent">Agent:</label>
         <select id="agent" name="agent_id" required>
             {% for agent in agents %}
@@ -14,17 +15,15 @@
             {% endfor %}
         </select>
         <br>
+        <label for="property">Property:</label>
+        <select id="property" name="property_id" required disabled>
+            <option value="">Select an Agent first</option>
+        </select>
+        <br>
         <label for="customer">Customer:</label>
         <select id="customer" name="customer_id" required>
             {% for customer in customers %}
                 <option value="{{ customer.customer_id }}">{{ customer.customer_id }} -  {{ customer.customer_name }}</option>
-            {% endfor %}
-        </select>
-        <br>
-        <label for="property">Property:</label>
-        <select id="property" name="property_id" required>
-            {% for property in properties %}
-                <option value="{{ property.property_id }}">{{ property.property_id }} - {{ property.property_address }}{{ property.property_zip }}</option>
             {% endfor %}
         </select>
         <br>
@@ -37,6 +36,27 @@
         <input type="submit" value="Create">
     </form>
     <a href="/sales"><button>Cancel, Return Back to Sales</button></a>
+
+<!-- JAVASCRIPT USED to dynamically assign. Really only want the sales to happen based on what agent owns a property. -->
+    <script>
+        $(document).ready(function() {
+            $('#agent').change(function() {
+                var agentId = $(this).val();
+                if (agentId) {
+                    $('#property').prop('disabled', false);
+                    $.ajax({
+                        url: '/get_properties/' + agentId,
+                        type: 'GET',
+                        success: function(response) {
+                            $('#property').html(response);
+                        }
+                    });
+                } else {
+                    $('#property').prop('disabled', true);
+                    $('#property').html('<option value="">Select an Agent first</option>');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
-

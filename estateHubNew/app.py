@@ -7,7 +7,7 @@ from sqlalchemy import select
 from sqlalchemy import exc
 from sqlalchemy.sql import functions as func
 import psycopg2
-
+from flask import jsonify
 
 
 app = Flask(__name__, static_folder='staticFiles')
@@ -393,6 +393,10 @@ def sales_CRUD(action, sale_id=None):
         sold_property_ids = [sale.property_id for sale in Sale.query.all()]
         all_properties = Property.query.filter(~Property.property_id.in_(sold_property_ids)).all()
 
+        #AGENT filteration!!! Make sure the agent can only get the property they own
+        selected_agent_id = request.form.get('agent_id')  # Get selected agent from the form
+        selected_agent_properties = Property.query.filter_by(agent_id=selected_agent_id).all()
+
         all_customers = Customer.query.all()
         return render_template('create_sale.html', agents=all_agents, properties=all_properties, customers=all_customers)
 
@@ -610,6 +614,13 @@ def customer_CRUD(action, customer_id=None):
 
 # End of CRUD for Customers
             
+@app.route('/get_properties/<int:agent_id>')
+def get_properties(agent_id):
+    agent_properties = Property.query.filter_by(agent_id=agent_id).all()
+    options = ""
+    for property in agent_properties:
+        options += f'<option value="{property.property_id}">{property.property_id} - {property.property_address}{property.property_zip}</option>'
+    return options
 
 
 
