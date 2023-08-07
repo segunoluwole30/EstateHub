@@ -196,7 +196,16 @@ def agent_CRUD(action, agent_id=None):
         db.session.delete(agent)
         db.session.commit()
         return redirect('/agents')
+    #FILTERING is not a part of the CRUD, but added here for convienience
+    elif action == 'filter':
+        filtered_agents = Agent.query
 
+        agent_id = request.form.get('agent_id')
+        if agent_id:
+            filtered_agents = filtered_agents.filter_by(agent_id=agent_id)
+            print('agent_id given')
+
+        return render_template('agents.html', agents=filtered_agents.all())
     # CRUD - R, Retrieve
     else:
         return redirect('/agents')
@@ -250,7 +259,16 @@ def contractor_CRUD(action, contractor_id=None):
         db.session.delete(contractor)
         db.session.commit()
         return redirect('/contractors')
+    #FILTERING is not a part of the CRUD, but added here for convienience
+    elif action == 'filter':
+            filtered_contractors = Contractor.query
 
+            contractor_id = request.form.get('contractor_id')
+            if contractor_id:
+                filtered_contractors = filtered_contractors.filter_by(contractor_id=contractor_id)
+                print('contractor_id given')
+
+            return render_template('contractors.html', contractors=filtered_contractors.all())
     else:
         return redirect('/contractors')
 
@@ -312,6 +330,27 @@ def contract_CRUD(action, contract_id=None):
         db.session.commit()
 
         return redirect('/contracts')
+
+    #FILTERING is not a part of the CRUD, but added here for convienience
+    elif action == 'filter':
+        filtered_contracts = Contract.query
+
+        contract_id = request.form.get('contract_id')
+        if contract_id:
+            filtered_contracts = filtered_contracts.filter_by(contract_id=contract_id)
+            print('contract_id given')
+
+        contractor_id = request.form.get('contractor_id')
+        if contractor_id:
+            filtered_contracts = filtered_contracts.filter_by(contractor_id=contractor_id)
+            print('contractor_id given')
+
+        property_id = request.form.get('property_id')
+        if property_id:
+            filtered_contracts = filtered_contracts.filter_by(property_id=property_id)
+            print('property_id given')
+
+        return render_template('contracts.html', contracts=filtered_contracts.all())    
 
     # CRUD - R, Retrieve
     else:
@@ -392,9 +431,8 @@ def sales_CRUD(action, sale_id=None):
         db.session.delete(sale)
         db.session.commit()
         return redirect('/sales')
-    
     else:
-        return redirect('/sales')
+        return redirect('/sales')    
 
 # End CRUD for Sales
 
@@ -453,7 +491,7 @@ def properties_CRUD(action, property_id=None):
 
         all_agents = Agent.query.all()
         return render_template('update_property.html', property=property, agents=all_agents)
-    
+    #FILTERING is not a part of the CRUD, but added here for convienience
     elif action=='filter':
         filtered_properties = Property.query
 
@@ -541,6 +579,31 @@ def customer_CRUD(action, customer_id=None):
         db.session.delete(customer)
         db.session.commit()
         return redirect('/customers')
+    #FILTERING is not a part of the CRUD, but added here for convienience
+    elif action == 'filter':
+        filtered_customers = Customer.query
+
+        preferred_zip = request.form['preferred_zip']
+        if preferred_zip:
+            filtered_customers = filtered_customers.filter_by(preferred_zip=preferred_zip)
+            print('preferred_zip given')
+
+        preferred_beds = request.form['preferred_beds']
+        if preferred_beds:
+            filtered_customers = filtered_customers.filter_by(preferred_beds=preferred_beds)
+            print('preferred_beds given')
+
+        preferred_baths = request.form['preferred_baths']
+        if preferred_baths:
+            filtered_customers = filtered_customers.filter_by(preferred_baths=preferred_baths)
+            print('preferred_baths given')
+
+        preferred_price = request.form['preferred_price']
+        if preferred_price:
+            filtered_customers = filtered_customers.filter_by(preferred_price=preferred_price)
+            print('preferred_price given')
+
+        return render_template('customers.html', customers=filtered_customers.all())
 
     else:
         return redirect('/customers')

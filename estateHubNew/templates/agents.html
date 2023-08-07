@@ -25,6 +25,16 @@
         </tr>
         {% endfor %}
     </table>
+    <div id="filter">
+        <form class="crud" method="POST" action="/agents/filter" style="display: flex; flex-direction: row;">
+            <label for="agent_id">Agent ID:</label>
+            <input type="number" name="agent_id">
+            <br>
+            <input type="submit" value="Filter">
+        </form>
+        <a href="/agents"><button>Reset Filter</button></a><br>
+    </div>
+    
     <br>
     <a href="/agents/create"><button> New Agent </button></a> <br>
     <a href="/startup"><button>Back to EstateHub Home </button></a>

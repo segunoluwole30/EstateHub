@@ -31,6 +31,24 @@
             </tr>
         {% endfor %}
     </table>
+    <div id="filter">
+        <form class="crud" method="POST" action="/customers/filter" style="display: flex; flex-direction: row;">
+            <label for="preferred_zip">Preferred Zip:</label>
+            <input type="text" name="preferred_zip">
+            <br>
+            <label for="preferred_beds">Preferred # Beds:</label>
+            <input type="number" name="preferred_beds">
+            <br>
+            <label for="preferred_baths">Preferred # Baths:</label>
+            <input type="number" name="preferred_baths">
+            <br>
+            <label for="preferred_price">Preferred Price:</label>
+            <input type="number" name="preferred_price">
+            <br>
+            <input type="submit" value="Filter">
+        </form>
+    </div>
+    <a href="/customers"><button>Reset Filter</button></a><br>    
     <a href="/customers/create"><button>Create New Customer</button></a><br>
     <a href="/startup"><button>Back to EstateHub Home</button></a>
 </body>

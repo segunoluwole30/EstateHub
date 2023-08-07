@@ -27,6 +27,16 @@
         </tr>
         {% endfor %}
     </table>
+    <div id="filter">
+        <form class="crud" method="POST" action="/contractors/filter" style="display: flex; flex-direction: row;">
+            <label for="contractor_id">Contractor ID:</label>
+            <input type="number" name="contractor_id">
+            <br>
+            <input type="submit" value="Filter">
+        </form>
+        <a href="/contractors"><button>Reset Filter</button></a><br>
+    </div>
+    
     <a href="/contractors/create"><button>Create New Contractor</button></a>
     <br>
     <a href="/startup"><button>Back to EstateHub Home</button></a>
