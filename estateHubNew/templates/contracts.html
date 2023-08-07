@@ -9,15 +9,15 @@
     <table>
         <tr>
             <th>Contract ID</th>
-            <th>Contractor</th>
-            <th>Property ID</th>
+            <th>Contractor (Contractor ID)</th>
+            <th>Property (Property ID)</th>
             <th>Actions</th>
         </tr>
         {% for contract in contracts %}
             <tr>
                 <td>{{ contract.contract_id }}</td>
                 <td>{{ contract.contractor.contractor_name }} ({{ contract.contractor.contractor_id }})</td>
-                <td>{{ contract.property_id }}</td>
+                <td>{{ contract.property.property_address }} {{ contract.property.property_zip }} ({{ contract.property.property_id }})</td>
                 <td>
                     <a href="/contracts/update/{{ contract.contract_id }}">Update</a>
                     <a href="/contracts/delete/{{ contract.contract_id }}">Delete</a>
@@ -25,8 +25,8 @@
             </tr>
         {% endfor %}
     </table>
-    <a href="/contracts/create">Create New Contract</a><br>
-    <a href="/startup">Back to EstateHub Home</a>
+    <a href="/contracts/create"><button>Create New Contract</button></a><br>
+    <a href="/startup"><button>Back to EstateHub Home</button></a>
 
 </body>
 </html>

@@ -1,0 +1,14 @@
+click
+colorama
+flask
+flask-sqlalchemy
+greenlet
+itsdangerous
+jinja2
+markupsafe
+psycopg2-binary
+sqlalchemy
+werkzeug
+Flask-Migrate
+Flask-Session
+gunicorn

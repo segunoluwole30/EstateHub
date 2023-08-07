@@ -17,14 +17,14 @@
         <label for="customer">Customer:</label>
         <select id="customer" name="customer_id" required>
             {% for customer in customers %}
-                <option value="{{ customer.customer_id }}">{{ customer.customer_id }} </option>
+                <option value="{{ customer.customer_id }}">{{ customer.customer_id }} -  {{ customer.customer_name }}</option>
             {% endfor %}
         </select>
         <br>
         <label for="property">Property:</label>
         <select id="property" name="property_id" required>
             {% for property in properties %}
-                <option value="{{ property.property_id }}">{{ property.property_id }} - {{ property.property_address }}</option>
+                <option value="{{ property.property_id }}">{{ property.property_id }} - {{ property.property_address }}{{ property.property_zip }}</option>
             {% endfor %}
         </select>
         <br>
@@ -36,7 +36,7 @@
         <br>
         <input type="submit" value="Create">
     </form>
-    <a href="/sales">Cancel, Return Back to Sales</a>
+    <a href="/sales"><button>Cancel, Return Back to Sales</button></a>
 </body>
 </html>
 
