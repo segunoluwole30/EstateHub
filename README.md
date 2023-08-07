@@ -10,6 +10,9 @@ We utilized the following Cloud services:
 
 Our goal is to create an application that streamlines the real estate sales process, increases agent productivity, and efficiently handles real estate data.
 
+Our Login for Agents:
+User = Admin
+Password  = csce310
 
 ## Requirements ##
 
