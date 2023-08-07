@@ -33,5 +33,14 @@
     </table>
     <a href="/sales/create">Create New Sale</a><br>
     <a href="/startup">Back to EstateHub Home</a>
+    <h1>Generate Sales Report</h1>
+    <form class="crud" method="POST" action="/sales/report">
+         <select id="agent_id" name="agent_id" required style="margin-bottom: 20px;">
+            {% for agent in agents %}
+            <option value="{{ agent.agent_id }}">{{ agent.agent_id }} - {{ agent.agent_name }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Generate Report">
+    </form>
 </body>
 </html>

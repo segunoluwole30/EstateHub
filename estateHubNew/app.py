@@ -5,6 +5,7 @@ from flask_session import Session
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import select
 from sqlalchemy import exc
+from sqlalchemy.sql import functions as func
 import psycopg2
 
 
@@ -137,7 +138,8 @@ def customers():
 @app.route('/sales', methods=['GET'])
 def sales():
     all_sales = Sale.query.all()
-    return render_template('sales.html', sales=all_sales)
+    all_agents = Agent.query.all()
+    return render_template('sales.html', sales=all_sales, agents=all_agents)
 
 @app.route('/contracts', methods=['GET'])
 def contracts():
@@ -319,6 +321,15 @@ def contract_CRUD(action, contract_id=None):
 @app.route('/sales/<action>', methods=['GET', 'POST'])
 @app.route('/sales/<action>/<int:sale_id>', methods=['GET', 'POST'])
 def sales_CRUD(action, sale_id=None):
+    if action=='report':
+        agent_id = request.form['agent_id']
+        agent = Agent.query.get_or_404(agent_id)
+        sale_list = Sale.query.filter_by(agent_id = agent_id).with_entities(Sale.sale_id, Sale.property_id, Sale.customer_id, Sale.sale_date, Sale.sale_amount)
+        total = str(getattr(db.session.execute(select(func.sum(Sale.sale_amount).label('sum')).where(Sale.agent_id == agent_id)).first(), 'sum'))
+        if total=="None":
+            total = "0"
+        return render_template('sales_report.html', agent=agent, sale_list=sale_list, total=total)
+
     if action=='create':
 
         if request.method=='POST':
