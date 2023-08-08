@@ -19,8 +19,15 @@
             <td>{{ agent.agent_name }}</td>
             <td>{{ agent.agent_phone }}</td>
             <td>
-                <a href="/agents/update/{{ agent.agent_id }}">Edit</a>
-                <a href="/agents/delete/{{ agent.agent_id }}">Delete</a>
+                <a href="/agents/update/{{ agent.agent_id }}">Update</a>
+                <a href="/agents/delete/{{ agent.agent_id }}" onclick="return confirmDelete();">Delete</a>
+    
+            <script>
+                function confirmDelete() {
+                    return confirm("Are you sure you want to delete this Agent? If so, make sure to go to the Properties page after to update the properties they may have been assigned to another Agent!");
+                }
+            </script>
+    
             </td>
         </tr>
         {% endfor %}

@@ -19,10 +19,14 @@
             <td>{{ contractor.contractor_name }}</td>
             <td>{{ contractor.contractor_phone }}</td>
             <td>
-                <a href="/contractors/update/{{ contractor.contractor_id }}"><button>Edit</button></a>
-                <form method="post" action="/contractors/delete/{{ contractor.contractor_id }}" style="display: inline-block;">
-                    <input type="submit" value="Delete">
-                </form>
+                <a href="/contractors/update/{{ contractor.contractor_id }}">Update</a>
+                <a href="/contractors/delete/{{ contractor.contractor_id }}" onclick="return confirmDelete();">Delete</a>
+                <script>
+                    function confirmDelete() {
+                        return confirm("Are you sure you want to delete this Contractor? If so, make sure to go to the Contracts page after and if this Contractor has a Contract reassign it to another Contractor!");
+                    }
+                </script>
+            
             </td>
         </tr>
         {% endfor %}
