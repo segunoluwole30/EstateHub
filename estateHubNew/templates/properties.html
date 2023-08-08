@@ -30,7 +30,12 @@
                 <td>{{ property.price }}</td>
                 <td>
                     <a href="/properties/update/{{ property.property_id }}">Update</a>
-                    <a href="/properties/delete/{{ property.property_id }}">Delete</a>
+                    <a href="/properties/delete/{{ property.property_id }}"onclick="return confirmDelete();" >Delete</a>
+                    <script>
+                        function confirmDelete() {
+                            return confirm("Are you sure you want to delete this Property? This is not a good idea if it has already been sold or put in a contract. Double check the Sales and Contracts and proceed with caution.");
+                        }
+                    </script>                   
                 </td>
             </tr>
         {% endfor %}

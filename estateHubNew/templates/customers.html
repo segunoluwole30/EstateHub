@@ -26,7 +26,12 @@
                 <td>{{ customer.preferred_price }}</td>
                 <td>
                     <a href="/customers/update/{{ customer.customer_id }}">Update</a>
-                    <a href="/customers/delete/{{ customer.customer_id }}">Delete</a>
+                    <a href="/customers/delete/{{ customer.customer_id }}"onclick="return confirmDelete();">Delete </a>
+                <script>
+                    function confirmDelete() {
+                        return confirm("Are you sure you want to delete this Customer? This will cause their name to be erased from any Sales they are present in.");
+                    }
+                </script>
                 </td>
             </tr>
         {% endfor %}

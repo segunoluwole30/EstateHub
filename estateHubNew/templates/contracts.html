@@ -20,7 +20,12 @@
                 <td>{{ contract.property.property_address }} {{ contract.property.property_zip }} ({{ contract.property.property_id }})</td>
                 <td>
                     <a href="/contracts/update/{{ contract.contract_id }}">Update</a>
-                    <a href="/contracts/delete/{{ contract.contract_id }}">Delete</a>
+                    <a href="/contracts/delete/{{ contract.contract_id }}"onclick="return confirmDelete();">Delete</a>
+                    <script>
+                        function confirmDelete() {
+                            return confirm("Are you sure you want to delete this Contract?");
+                        }
+                    </script>   
                 </td>
             </tr>
         {% endfor %}

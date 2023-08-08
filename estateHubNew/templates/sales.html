@@ -26,7 +26,12 @@
                 <td>{{ sale.sale_amount }}</td>
                 <td>
                     <a href="/sales/update/{{ sale.sale_id }}">Update</a>
-                    <a href="/sales/delete/{{ sale.sale_id }}">Delete</a>
+                    <a href="/sales/delete/{{ sale.sale_id }}" onclick="return confirmDelete();" >Delete</a>
+                    <script>
+                        function confirmDelete() {
+                            return confirm("Are you sure you want to delete this Sale?");
+                        }
+                    </script>                        
                 </td>
             </tr>
         {% endfor %}
