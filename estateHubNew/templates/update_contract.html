@@ -6,7 +6,8 @@
 </head>
 <body>
     <h1>Update Contract</h1><br>
-    <p>Contracts can only be updated with properties that are not already in a contract.</p>
+    <p>Contracts can only be updated with properties that are not already in a contract and the property listed previously.</p>
+    <p>If you want to update with a property in a contract then you must update or delete the contract containing it to not have it</p>
     <form class="crud" method="POST" action="/contracts/update/{{ contract.contract_id }}">
         <label for="contractor_id">Contractor:</label>
         <select name="contractor_id" id="contractor_id">
@@ -17,8 +18,11 @@
         <br>
         <label for="property_id">Property ID:</label>
         <select name="property_id" id="property_id">
+            <option value="{{ contract.property_id }}" selected>{{ contract.property_id }}</option>
             {% for property in properties %}
-                <option value="{{ property.property_id }}" {% if property.property_id == contract.property_id %}selected{% endif %}>{{ property.property_id }}</option>
+                {% if property.property_id != contract.property_id %}
+                    <option value="{{ property.property_id }}">{{ property.property_id }}</option>
+                {% endif %}
             {% endfor %}
         </select>
         <br>
@@ -27,3 +31,4 @@
     <a href="/contracts"><button>Cancel, Return Back to Contracts</button></a>
 </body>
 </html>
+

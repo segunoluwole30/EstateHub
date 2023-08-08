@@ -6,7 +6,7 @@
 </head>
 <body>
     <h1>Update Sale - Update at your own risk. Make sure to check the Properties Table for accurate updates.</h1><br>
-    <p>You can only update the property to an unsold property. If you wish to update it to a sold one, delete the sold property first</p>
+    <p>You can only update the property to an unsold property or the one listed. If you wish to update it to a sold one, delete the sold property first</p>
     <form class="crud" method="post" action="/sales/update/{{ sale.sale_id }}">
         <label for="agent">Agent:</label>
         <select id="agent" name="agent_id" required>
@@ -24,8 +24,11 @@
         <br>
         <label for="property">Property:</label>
         <select id="property" name="property_id" required>
+            <option value="{{ sale.property_id }}" selected>{{ sale.property_id }} - {{ sale.property.property_address }}</option>
             {% for property in properties %}
-                <option value="{{ property.property_id }}" {% if sale.property_id == property.property_id %}selected{% endif %}>{{ property.property_id }} - {{ property.property_address }}</option>
+                {% if property.property_id != sale.property_id and property.property_id not in sold_property_ids %}
+                    <option value="{{ property.property_id }}">{{ property.property_id }} - {{ property.property_address }}</option>
+                {% endif %}
             {% endfor %}
         </select>
         <br>
