@@ -5,7 +5,8 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='startup.css') }}">
 </head>
 <body>
-    <h1>Update Contract</h1>
+    <h1>Update Contract</h1><br>
+    <p>Contracts can only be updated with properties that are not already in a contract.</p>
     <form class="crud" method="POST" action="/contracts/update/{{ contract.contract_id }}">
         <label for="contractor_id">Contractor:</label>
         <select name="contractor_id" id="contractor_id">

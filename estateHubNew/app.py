@@ -616,11 +616,18 @@ def customer_CRUD(action, customer_id=None):
             
 @app.route('/get_properties/<int:agent_id>')
 def get_properties(agent_id):
-    agent_properties = Property.query.filter_by(agent_id=agent_id).all()
-    options = ""
-    for property in agent_properties:
-        options += f'<option value="{property.property_id}">{property.property_id} - {property.property_address}{property.property_zip}</option>'
+    sold_property_ids = [sale.property_id for sale in Sale.query.all()]  # Get a list of sold property IDs
+    agent_properties = Property.query.filter_by(agent_id=agent_id).filter(~Property.property_id.in_(sold_property_ids)).all()
+
+    if agent_properties:
+        options = ""
+        for property in agent_properties:
+            options += f'<option value="{property.property_id}">{property.property_id} - {property.property_address}{property.property_zip}</option>'
+    else:
+        options = '<option value="" disabled>No properties</option>'
+
     return options
+
 
 
 

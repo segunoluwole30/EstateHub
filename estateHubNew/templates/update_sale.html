@@ -5,7 +5,8 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='startup.css') }}">
 </head>
 <body>
-    <h1>Update Sale</h1>
+    <h1>Update Sale - Update at your own risk. Make sure to check the Properties Table for accurate updates.</h1><br>
+    <p>You can only update the property to an unsold property. If you wish to update it to a sold one, delete the sold property first</p>
     <form class="crud" method="post" action="/sales/update/{{ sale.sale_id }}">
         <label for="agent">Agent:</label>
         <select id="agent" name="agent_id" required>
